@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Bean;
 public class CrudeDemeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CrudeDemeApplication.class, args);
-    }
+        SpringApplication.run(CrudeDemeApplication.class, args);}
 
 
     @Bean
