@@ -1,5 +1,8 @@
 package com.sanawulai.crudedemo;
 
+import com.sanawulai.crudedemo.dao.AppDAO;
+import com.sanawulai.crudedemo.entity.Instructor;
+import com.sanawulai.crudedemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +16,52 @@ public class CrudeDemeApplication {
 
 
     @Bean
-    public CommandLineRunner commandLineRunner (String[] args){
+    public CommandLineRunner commandLineRunner (AppDAO appDAO){
 
-        return  runner ->
-                System.out.println("Hello World");
+        return  runner ->{
+              // createInstructor(appDAO);
+
+
+            //findInstructor(appDAO);
+
+            deleteInstructor(appDAO);
+        };
+    }
+
+    private void deleteInstructor(AppDAO appDAO) {
+        int theId = 3;
+        System.out.println("Deleting instructor with id: " + theId);
+        appDAO.deleteIstructorById(theId);
+    }
+
+    private void findInstructor(AppDAO appDAO) {
+
+        int theId = 3;
+        System.out.println("Finding instructor with id: " + theId);
+        Instructor theInstructor = appDAO.findInstructorById(theId);
+        System.out.println("theInstructor " + theInstructor);
+        System.out.println("the associated instructorDetail only: " + theInstructor.getInstructorDetail());
+    }
+
+    private void createInstructor(AppDAO appDAO) {
+
+        //create the instructor
+        Instructor theInstructor = new Instructor("Sanau","Wulai","numbonayar@gmail");
+
+        //create the instructor detail
+        InstructorDetail theInstructorDetail = new InstructorDetail("calbank.net","Java");
+
+        //associate the objects
+        theInstructor.setInstructorDetail(theInstructorDetail);
+
+        //save the instructor
+        //NOTE: this will ALSO save the details object
+        //because of CascadeType.ALL
+        System.out.println("Saving the instructor..."+ theInstructor);
+        appDAO.save(theInstructor);
+
+        System.out.println("Done!");
+
     }
 
 }

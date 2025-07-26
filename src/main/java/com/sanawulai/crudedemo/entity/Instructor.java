@@ -2,6 +2,8 @@ package com.sanawulai.crudedemo.entity;
 
 import jakarta.persistence.*;
 
+@Entity  // Add this annotation
+@Table(name = "instructor")  // Add this to specify the table name
 public class Instructor {
     // annnotate the class as an entity and map to db table
     //define the fields
