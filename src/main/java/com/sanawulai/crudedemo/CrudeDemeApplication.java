@@ -12,6 +12,7 @@ public class CrudeDemeApplication {
         SpringApplication.run(CrudeDemeApplication.class, args);
     }
 
+
     @Bean
     public CommandLineRunner commandLineRunner (String[] args){
 
