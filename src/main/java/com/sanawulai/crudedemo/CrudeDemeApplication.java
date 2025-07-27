@@ -19,24 +19,50 @@ public class CrudeDemeApplication {
     public CommandLineRunner commandLineRunner (AppDAO appDAO){
 
         return  runner ->{
-              // createInstructor(appDAO);
+              //createInstructor(appDAO);
 
 
             //findInstructor(appDAO);
 
-            deleteInstructor(appDAO);
+            //deleteInstructor(appDAO);
+
+            //findInstructorDetail(appDAO);
+
+            deleteInstructorDetail(appDAO);
         };
     }
 
+    private void deleteInstructorDetail(AppDAO appDAO) {
+
+        int theId = 4;
+        System.out.println("Deleting instructor detail with id: " + theId);
+        appDAO.deleteInstructorDetailById(theId);
+        System.out.println("Done!");
+    }
+
+    private void findInstructorDetail(AppDAO appDAO) {
+
+        //get the instructor detail object
+        int theId = 4;
+        Instructor theInstructor = appDAO.findInstructorById(theId);
+
+        //print the instructor detail
+        System.out.println(theInstructor);
+
+        //print the associated instructor
+        System.out.println("the associated instructor is " + theInstructor.getInstructorDetail());
+        System.out.println("Done");
+    }
+
     private void deleteInstructor(AppDAO appDAO) {
-        int theId = 3;
+        int theId = 4;
         System.out.println("Deleting instructor with id: " + theId);
         appDAO.deleteIstructorById(theId);
     }
 
     private void findInstructor(AppDAO appDAO) {
 
-        int theId = 3;
+        int theId = 4 ;
         System.out.println("Finding instructor with id: " + theId);
         Instructor theInstructor = appDAO.findInstructorById(theId);
         System.out.println("theInstructor " + theInstructor);
